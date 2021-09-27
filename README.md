@@ -4,7 +4,7 @@ A simple discord bot template for Typescript.
 # Features
 - Easy to understand.
 - Advanced.
-- Supports both message based commands and Slash ( / ) Commands.
+- Supports Slash ( / ) Commands.
 - Good commenting for more information.
 
 # How to start ?
@@ -14,8 +14,13 @@ A simple discord bot template for Typescript.
 - do `npm i ` than `npm run dev`, GG bot is ready.
 - You can add more commands by adding files in `/commands` and events in `/events`.
 
+# Other run scripts
+- `npm run build` to build the code i.e. convert TS to JS
+- `npm run start` to start the production build
+
 # Note
-- Do not forget to export new commands / events in the respective `index.ts` file.
+- You can adjust various stuff in `/src/classes/bot.ts`.
+- Always feel free to mention me on discord my username : `Shisui`
 
 # Support Me
 You can support me via :

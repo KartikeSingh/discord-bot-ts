@@ -3,8 +3,9 @@ import bot from "../classes/bot";
 import { CommandInteractionOption, Interaction } from "discord.js";
 
 // exporting the event handler
-export const interactionCreate = (client: bot, interaction: Interaction, ...useless: Array<any>) => {
+export default function interactionCreate(client: bot, interaction: Interaction) {
     // Returning if interaction is not a command
+
     if (!interaction.isCommand()) return;
 
     const args: Array<CommandInteractionOption> = [];

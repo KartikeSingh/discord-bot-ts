@@ -1,36 +1,22 @@
 // Importing the libraries
-import axios from "axios";
 import bot from "../classes/bot";
-import * as commands from '../commands';
 
 // exporting the ready event
-export const ready = (client: bot, ...useless: Array<any>) => {
-    const slashCommands = [];
+export default async function ready(client: bot) {
+    const slashCommands = [], commands = client.commands.toJSON();
 
-    for (let i = 0; i < Object.keys(commands).length; i++) {
-        const command = Object.values(commands)[i].default;
+    // Getting the slash command data
+    for (let i = 0; i < commands.length; i++) {
+        const { name, description, options } = commands[i];
 
-        client.commands.set(command.name, command);
-
-        if (command.slash) slashCommands.push({
-            name: command.name,
-            description: command.description,
-            type: 1,
-            options: command?.options
+        // Type 1 means chat input command
+        slashCommands.push({
+            name, description, options, type: 1
         });
     }
 
-    slashCommands.forEach(v => {
-        // @ts-ignore: Object is possibly 'null'.
-        axios.post(`https://discord.com/api/v9/applications/${client.user.id}/commands`, v, {
-            headers: {
-                Authorization: `Bot ${client.token}`
-            }
-        }).catch(e => {
-            console.log("Error in creating slash commands.");
-            console.log(e.response.data.errors._errors);
-        })
-    });
+    // Adding the slash commands globally
+    if (slashCommands.length > 0) await client.application?.commands.set(slashCommands);
 
     console.log("Bot is up and running!");
 }

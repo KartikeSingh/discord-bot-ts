@@ -13,9 +13,6 @@ export default {
     // The desription of the command
     description: "Get the ping of the bot",
 
-    // Whether the command is slash command or not
-    slash: true,
-
     // The options for slash commands
     options: [],
 
